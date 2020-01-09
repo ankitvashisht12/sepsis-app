@@ -59,9 +59,9 @@ class _DashboardState extends State<Dashboard> {
         return ListView.builder(
           itemCount: modelDependency.length,
           itemBuilder: (context, idx){
-            var term = modelDependency[0][0];
-            var shortTerm = modelDependency[0][1];
-            var percent = modelDependency[0][2];
+            var term = modelDependency[idx][0];
+            var shortTerm = modelDependency[idx][1];
+            var percent = modelDependency[idx][2];
 
             return ListTile(
               title: Text("$term"),
@@ -71,6 +71,41 @@ class _DashboardState extends State<Dashboard> {
           },
         );
       }
+    );
+  }
+
+  _showParamName(paramName){
+    return Text(
+      "$paramName",
+      style: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+  
+  _showParamValue(paramValue, paramUnit){
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: '$paramValue',
+            style: TextStyle(
+              fontSize: 20,
+              color:
+                  Theme.of(context).accentColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          TextSpan(
+            text: ' $paramUnit',
+            style: TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -195,19 +230,45 @@ class _DashboardState extends State<Dashboard> {
                         height: 25,
                         color: Colors.grey[300],
                       ),
+                      
                       Container(
-                        child: Center(
-                          child: FlatButton(
-                            child: Text("Check Model Dependency"),
-                            onPressed: (){
-                              _showModelDependency(context);
-                            },
-                          ),
-                        )
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  _showParamName("OXYGEN"),
+                                  _showParamValue('89', '%')
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  _showParamName("CALORIES"),
+                                  _showParamValue('2500', 'cal')
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  _showParamName("HEART RATE"),
+                                  _showParamValue('120', 'bpm')
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      Divider(
-                        height: 25,
-                        color: Colors.grey[300],
+                      SizedBox(
+                        height: 25.0,
                       ),
                       Container(
                         child: Row(
@@ -217,35 +278,8 @@ class _DashboardState extends State<Dashboard> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(
-                                    'OXYGEN',
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: '89',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color:
-                                                Theme.of(context).accentColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: ' %',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  _showParamName("GLUCOSE"),
+                                  _showParamValue('193', 'mg/dL')
                                 ],
                               ),
                             ),
@@ -254,35 +288,8 @@ class _DashboardState extends State<Dashboard> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Text(
-                                    'CALORIES',
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: '2500',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color:
-                                                Theme.of(context).accentColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: ' cal',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  _showParamName("RESP"),
+                                  _showParamValue('25', 'bpm')
                                 ],
                               ),
                             ),
@@ -291,48 +298,73 @@ class _DashboardState extends State<Dashboard> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
-                                  Text(
-                                    'HEART RATE',
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: '102',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color:
-                                                Theme.of(context).accentColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: ' bpm',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  _showParamName("TEMP"),
+                                  _showParamValue('96.2', '°C')
                                 ],
                               ),
                             )
                           ],
                         ),
                       ),
-                      Divider(
-                        height: 25,
-                        color: Colors.grey[300],
+                      SizedBox(
+                        height: 25.0,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10),
+                      Container(
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  _showParamName("PLATELETS"),
+                                  _showParamValue('317', 'count*10^3/µL')
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  _showParamName("HEMOGLOBIN"),
+                                  _showParamValue('12.5', 'g/dL')
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  _showParamName("BUN"),
+                                  _showParamValue('14', 'mg/dL')
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
+                      SizedBox(
+                        height: 25.0,
+                      ),
+                      Container(
+                        child: Center(
+                          child: FlatButton(
+                            child: Text(
+                              "CHECK MODEL DEPENDENCY",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: (){
+                              _showModelDependency(context);
+                            },
+                          ),
+                        )
+                      ),
+                      
                     ],
                   )))),
     );
