@@ -47,7 +47,21 @@ class _DashboardState extends State<Dashboard> {
           SpeedDialChild(
             child: Icon(Icons.add),
             label: "Add Manually",
-            onTap: ()=>print("Taking OCR")
+            onTap: (){
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  title: Text("Coming Soon..."),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text("OK"),
+                    ),
+                  ],
+                  elevation: 20.0,
+                  ),
+                barrierDismissible: true,
+              );
+            }
           ),
         ],
       ),
