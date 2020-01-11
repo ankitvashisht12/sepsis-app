@@ -28,6 +28,7 @@ dependencies:
   curved_navigation_bar: ^0.3.1 
   flutter_speed_dial:
   http:
+  url_launcher: 
   
 
 dev_dependencies:

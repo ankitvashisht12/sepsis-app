@@ -130,31 +130,47 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    final Color bgColor = Color(0xffF3F3F3);
+   
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: bgColor,
       appBar: AppBar(
-        title: Text("SEPSIS"),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {},
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text("SEPSIS",
+          style: TextStyle(
+            fontSize: 25.0,
+            fontFamily: 'Poppins',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        titleSpacing: 0.0,
+        
+        titleSpacing: 10.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.notifications),
+            color: Colors.black,
             onPressed: () {},
           ),
           IconButton(
             icon: Icon(Icons.call),
+            color: Colors.black,
             onPressed: () {},
           ),
           IconButton(
             icon: Icon(Icons.more_vert),
+            color: Colors.black,
             onPressed: () {},
           )
         ],
       ),
+      
+      
       floatingActionButton: SpeedDial(
+        backgroundColor: Colors.redAccent,
         animatedIcon: AnimatedIcons.menu_close,
         children: [
           SpeedDialChild(
