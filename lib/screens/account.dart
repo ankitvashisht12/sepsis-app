@@ -146,7 +146,28 @@ class _AccountState extends State<Account> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    
+    final Color bgColor = Color(0xffF3F3F3);
+    return Scaffold(
+      
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text("Account",
+          style: TextStyle(
+            fontSize: 25.0,
+            fontFamily: 'Poppins',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        
+        titleSpacing: 10.0,
+        
+      ),
+
+      body : Container(
       child: new ListView(
         children: <Widget>[
           new Column(
@@ -173,7 +194,7 @@ class _AccountState extends State<Account> {
                     ),
                     Positioned(
                       // For Profile Pic
-                      top: 100.0,
+                      top: 50.0,
                       child: Container(
                         height: 190.0,
                         width: 190.0,
@@ -200,7 +221,7 @@ class _AccountState extends State<Account> {
                     Text(
                       'Ankit V.',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 28.0),
+                          fontWeight: FontWeight.bold, fontSize: 28.0, fontFamily: "Poppins"),
                     ),
                     SizedBox(
                       width: 5.0,
@@ -218,7 +239,7 @@ class _AccountState extends State<Account> {
               Container(
                   child: Text(
                 'Sepsis Stage 3',
-                style: TextStyle(fontSize: 18.0),
+                style: TextStyle(fontSize: 18.0,fontFamily: "Bebas"),
               )),
               SizedBox(
                 height: 10.0,
@@ -285,9 +306,14 @@ class _AccountState extends State<Account> {
                         height: 50.0,
                         child: RaisedButton(
                           onPressed: () {},
-                          color: Colors.greenAccent,
-                          textColor: Colors.black,
-                          child: Text("Add Favourites"),
+                          color: Colors.green,
+                          textColor: Colors.white,
+                          child: Text("Add Favourites",
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 20.0
+                          ),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -300,7 +326,12 @@ class _AccountState extends State<Account> {
                           onPressed: () {},
                           color: Colors.redAccent,
                           textColor: Colors.white,
-                          child: Text("Sign Out"),
+                          child: Text("Sign Out",
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 20.0
+                          ),
+                          ),
                         ),
                       ),
                     ],
@@ -309,6 +340,7 @@ class _AccountState extends State<Account> {
           )
         ],
       ),
+    )
     );
   }
 }

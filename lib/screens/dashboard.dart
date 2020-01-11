@@ -139,7 +139,7 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: Text("SEPSIS",
+        title: Text("Sepsis",
           style: TextStyle(
             fontSize: 25.0,
             fontFamily: 'Poppins',
