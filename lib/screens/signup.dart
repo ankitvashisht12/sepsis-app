@@ -20,17 +20,73 @@ class _SignupState extends State<Signup> with ValidationMixin {
         padding: EdgeInsets.all(16),
         child: Form(
           key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
+            //mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              createField("Name"),
+              SizedBox(height: 15.0,),
               emailInputField(),
               passwordInputField(),
+              createNumberField("Mobile"),
+              SizedBox(height: 15.0,),
+              createField("Address"),
+              SizedBox(height: 15.0,),
+              createNumberField("Age"),
+              SizedBox(height: 15.0,),
+              
+              createNumberField("Aadhaar Card Number"),
+              SizedBox(height: 15.0,),
+              
+              
               submitButton(),
               
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget createField(fieldtitle) {
+    return Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: TextFormField(
+            autofocus: true,
+            onSaved: (String value){
+              //save email to form (model class)  
+            },    
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              labelText: '$fieldtitle',
+              // hintText: 'Example : 35',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+            )
+        )
+    );
+  }
+
+
+  Widget createNumberField(fieldtitle) {
+    return Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: TextFormField(
+            autofocus: true,
+            onSaved: (String value){
+              //save email to form (model class)  
+            },    
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: '$fieldtitle',
+              // hintText: 'Example : 35',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+            )
+        )
     );
   }
 
