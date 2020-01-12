@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+//import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:sepsis/screens/sepsis_status.dart';
-
+import 'package:sepsis/screens/add_manual_entry.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -109,14 +109,14 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  createAlertDialog(BuildContext context){
+  createAlertDialog(BuildContext context, titleText, buttonText){
     return showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text("Coming Soon..."),
+                  title: Text("$titleText"),
                   actions: <Widget>[
                     FlatButton(
-                      child: Text("OK"),
+                      child: Text("$buttonText"),
                       onPressed: (){
                         Navigator.of(context).pop();
                       },
@@ -153,18 +153,22 @@ class _DashboardState extends State<Dashboard> {
           IconButton(
             icon: Icon(Icons.notifications),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/notification');
+            },
           ),
           IconButton(
             icon: Icon(Icons.call),
-            color: Colors.black,
-            onPressed: () {},
+            color: Colors.red,
+            onPressed: () {
+              createAlertDialog(context, "Ambulance", "Call 102");
+            },
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            color: Colors.black,
-            onPressed: () {},
-          )
+          // IconButton(
+          //   icon: Icon(Icons.more_vert),
+          //   color: Colors.black,
+          //   onPressed: () {},
+          // )
         ],
       ),
       
@@ -176,13 +180,13 @@ class _DashboardState extends State<Dashboard> {
           SpeedDialChild(
             child: Icon(Icons.camera_alt),
             label: "Take OCR",
-            onTap: ()=>createAlertDialog(context)
+            onTap: ()=>createAlertDialog(context, "Coming Soon...", "OK")
           ),
           SpeedDialChild(
             child: Icon(Icons.add),
             label: "Add Manually",
             onTap: (){
-              SepsisStatus();
+              Navigator.of(context).pushNamed("/addentrypage");
             }
           ),
         ],

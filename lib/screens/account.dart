@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
@@ -13,8 +14,8 @@ class _AccountState extends State<Account> {
     'Sister',
     'Uncle',
     'Aunt',
-    'A',
-    'b'
+    'Abhishek',
+    'Yukti'
   ];
   var FavouritesNumbers = [
     8014067473,
@@ -47,7 +48,7 @@ class _AccountState extends State<Account> {
                 ),
                 subtitle: Text("$number"),
                 trailing: IconButton(
-                  icon: Icon(Icons.minimize),
+                  icon: Icon(Icons.minimize, color: Colors.red,),
                   onPressed: () {},
                 ),
               );
@@ -56,7 +57,7 @@ class _AccountState extends State<Account> {
         });
   }
 
-  // Helper function : show Notification
+
 
   // Helper Function: show More Option
   _showMoreOption(cx) {
@@ -67,78 +68,42 @@ class _AccountState extends State<Account> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(2.0),
               child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.feedback,
+                    Icons.video_library,
                     color: Colors.black,
                   ),
                   SizedBox(
                     width: 10.0,
                   ),
                   Text(
-                    'Give feedback or report this profile',
+                    'Take Courses',
                     style: TextStyle(fontSize: 18.0),
                   )
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(2.0),
               child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.block,
+                    Icons.person_pin,
                     color: Colors.black,
                   ),
                   SizedBox(
                     width: 10.0,
                   ),
                   Text(
-                    'Block',
+                    'Talk to Expert',
                     style: TextStyle(fontSize: 18.0),
                   )
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.link,
-                    color: Colors.black,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'Copy link to profile',
-                    style: TextStyle(fontSize: 18.0),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'Search Profile',
-                    style: TextStyle(fontSize: 18.0),
-                  )
-                ],
-              ),
-            )
-          ],
+                      ],
         );
       },
     );
@@ -238,7 +203,7 @@ class _AccountState extends State<Account> {
               ),
               Container(
                   child: Text(
-                'Sepsis Stage 3',
+                'Sepsis Stage 1',
                 style: TextStyle(fontSize: 18.0,fontFamily: "Bebas"),
               )),
               SizedBox(
@@ -269,6 +234,7 @@ class _AccountState extends State<Account> {
                           icon: Icon(Icons.notifications, color: Colors.black),
                           onPressed: () {
                             //_showNotifications(context);
+                            Navigator.of(context).pushNamed('/notification');
                           },
                         ),
                         Text(
@@ -305,7 +271,9 @@ class _AccountState extends State<Account> {
                         width: MediaQuery.of(context).size.width,
                         height: 50.0,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/addfavpage');
+                          },
                           color: Colors.green,
                           textColor: Colors.white,
                           child: Text("Add Favourites",
@@ -323,7 +291,13 @@ class _AccountState extends State<Account> {
                         width: MediaQuery.of(context).size.width,
                         height: 50.0,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut().
+                            then((value){
+                              Navigator.of(context).pushReplacementNamed('/landingpage');
+                            }).
+                            catchError((e){print(e);});
+                          },
                           color: Colors.redAccent,
                           textColor: Colors.white,
                           child: Text("Sign Out",
@@ -345,8 +319,3 @@ class _AccountState extends State<Account> {
   }
 }
 
-@override
-Widget build(BuildContext context) {
-  // TODO: implement build
-  throw UnimplementedError();
-}
