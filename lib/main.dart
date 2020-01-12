@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:sepsis/screens/add_manual_entry.dart';
+import 'package:sepsis/screens/loading_screen.dart';
+import 'package:sepsis/screens/sepsis_status.dart';
 import 'screens/dashboard.dart';
 import 'screens/health_tips.dart';
 import 'screens/account.dart';
+import 'screens/login_screen.dart';
+import 'screens/signup.dart';
+import 'screens/notification.dart';
+import 'screens/addfavcontact.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -16,16 +24,22 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Sepsis APP'),
+      home: LoginScreen(),
+      routes: <String, WidgetBuilder>{
+        "/landingpage" : (BuildContext context)=>new MyApp(),
+        "/signup" : (BuildContext context)=> new Signup(),
+        "/homepage": (BuildContext context)=> new MyHomePage(),
+        "/addentrypage" : (BuildContext context)=> new AddManualEntry(),
+        "/sepsispage" : (BuildContext context)=> new SepsisStatus(),
+        "/loading" : (BuildContext context)=> new LoadingScreen(),
+        "/notification": (BuildContext context)=> new MyNotification(),
+        "/addfavpage": (BuildContext context)=> new AddFavContact(),
+      },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }

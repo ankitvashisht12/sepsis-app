@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
@@ -13,8 +14,8 @@ class _AccountState extends State<Account> {
     'Sister',
     'Uncle',
     'Aunt',
-    'A',
-    'b'
+    'Abhishek',
+    'Yukti'
   ];
   var FavouritesNumbers = [
     8014067473,
@@ -47,7 +48,7 @@ class _AccountState extends State<Account> {
                 ),
                 subtitle: Text("$number"),
                 trailing: IconButton(
-                  icon: Icon(Icons.minimize),
+                  icon: Icon(Icons.minimize, color: Colors.red,),
                   onPressed: () {},
                 ),
               );
@@ -56,7 +57,7 @@ class _AccountState extends State<Account> {
         });
   }
 
-  // Helper function : show Notification
+
 
   // Helper Function: show More Option
   _showMoreOption(cx) {
@@ -67,78 +68,42 @@ class _AccountState extends State<Account> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(2.0),
               child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.feedback,
+                    Icons.video_library,
                     color: Colors.black,
                   ),
                   SizedBox(
                     width: 10.0,
                   ),
                   Text(
-                    'Give feedback or report this profile',
+                    'Take Courses',
                     style: TextStyle(fontSize: 18.0),
                   )
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(2.0),
               child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.block,
+                    Icons.person_pin,
                     color: Colors.black,
                   ),
                   SizedBox(
                     width: 10.0,
                   ),
                   Text(
-                    'Block',
+                    'Talk to Expert',
                     style: TextStyle(fontSize: 18.0),
                   )
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.link,
-                    color: Colors.black,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'Copy link to profile',
-                    style: TextStyle(fontSize: 18.0),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'Search Profile',
-                    style: TextStyle(fontSize: 18.0),
-                  )
-                ],
-              ),
-            )
-          ],
+                      ],
         );
       },
     );
@@ -146,7 +111,28 @@ class _AccountState extends State<Account> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    
+    final Color bgColor = Color(0xffF3F3F3);
+    return Scaffold(
+      
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text("Account",
+          style: TextStyle(
+            fontSize: 25.0,
+            fontFamily: 'Poppins',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        
+        titleSpacing: 10.0,
+        
+      ),
+
+      body : Container(
       child: new ListView(
         children: <Widget>[
           new Column(
@@ -173,7 +159,7 @@ class _AccountState extends State<Account> {
                     ),
                     Positioned(
                       // For Profile Pic
-                      top: 100.0,
+                      top: 50.0,
                       child: Container(
                         height: 190.0,
                         width: 190.0,
@@ -200,7 +186,7 @@ class _AccountState extends State<Account> {
                     Text(
                       'Ankit V.',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 28.0),
+                          fontWeight: FontWeight.bold, fontSize: 28.0, fontFamily: "Poppins"),
                     ),
                     SizedBox(
                       width: 5.0,
@@ -217,8 +203,8 @@ class _AccountState extends State<Account> {
               ),
               Container(
                   child: Text(
-                'Sepsis Stage 3',
-                style: TextStyle(fontSize: 18.0),
+                'Sepsis Stage 1',
+                style: TextStyle(fontSize: 18.0,fontFamily: "Bebas"),
               )),
               SizedBox(
                 height: 10.0,
@@ -248,6 +234,7 @@ class _AccountState extends State<Account> {
                           icon: Icon(Icons.notifications, color: Colors.black),
                           onPressed: () {
                             //_showNotifications(context);
+                            Navigator.of(context).pushNamed('/notification');
                           },
                         ),
                         Text(
@@ -284,10 +271,17 @@ class _AccountState extends State<Account> {
                         width: MediaQuery.of(context).size.width,
                         height: 50.0,
                         child: RaisedButton(
-                          onPressed: () {},
-                          color: Colors.greenAccent,
-                          textColor: Colors.black,
-                          child: Text("Add Favourites"),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/addfavpage');
+                          },
+                          color: Colors.green,
+                          textColor: Colors.white,
+                          child: Text("Add Favourites",
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 20.0
+                          ),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -297,10 +291,21 @@ class _AccountState extends State<Account> {
                         width: MediaQuery.of(context).size.width,
                         height: 50.0,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut().
+                            then((value){
+                              Navigator.of(context).pushReplacementNamed('/landingpage');
+                            }).
+                            catchError((e){print(e);});
+                          },
                           color: Colors.redAccent,
                           textColor: Colors.white,
-                          child: Text("Sign Out"),
+                          child: Text("Sign Out",
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 20.0
+                          ),
+                          ),
                         ),
                       ),
                     ],
@@ -309,12 +314,8 @@ class _AccountState extends State<Account> {
           )
         ],
       ),
+    )
     );
   }
 }
 
-@override
-Widget build(BuildContext context) {
-  // TODO: implement build
-  throw UnimplementedError();
-}

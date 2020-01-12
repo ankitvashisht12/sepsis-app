@@ -28,6 +28,10 @@ dependencies:
   curved_navigation_bar: ^0.3.1 
   flutter_speed_dial:
   http:
+  url_launcher: 
+  cloud_firestore:
+  firebase_auth:
+  loading_animations:
   
 
 dev_dependencies:
@@ -59,6 +63,8 @@ flutter:
    - assets/img/sausage.png
    - assets/img/shoe.png
    - assets/img/up_red.png
+   - assets/img/green.png
+   - assets/img/cross.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
