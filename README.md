@@ -1,6 +1,7 @@
 # sepsis
 
-A new Flutter project.
+This app can be used to detect sepsis disease in patient. 
+[Demo Video](https://youtu.be/5-Zok19xe6s)
 
 ## Getting Started
 
